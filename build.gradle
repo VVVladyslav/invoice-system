@@ -1,0 +1,68 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.4'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.openjfx.javafxplugin' version '0.0.13' // 🔄 добавлено для JavaFX
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.flywaydb:flyway-core'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// ✅ актуальные на 2025
+	implementation 'net.sf.jasperreports:jasperreports:7.0.2'
+	implementation 'org.openjfx:javafx-controls:21'
+	implementation 'org.openjfx:javafx-fxml:21'
+	implementation 'com.github.ben-manes.caffeine:caffeine:3.2.0'
+//	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc:12.10.0'
+	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc:12.10.0.jre11'
+
+
+//	implementation  'com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre17'
+	// ❌ старые версии (оставлены как комментарий)
+	// implementation 'net.sf.jasperreports:jasperreports:6.21.0'
+	// implementation 'com.github.ben-manes.caffeine:caffeine:3.1.8'
+	// runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc:12.6.1.jre11'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// 🔄 JavaFX plugin конфигурация
+javafx {
+	version = "21"
+	modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
