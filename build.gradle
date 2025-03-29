@@ -54,6 +54,9 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
 
 
+
+
+
 //	implementation  'com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre17'
 	// ❌ старые версии (оставлены как комментарий)
 	// implementation 'net.sf.jasperreports:jasperreports:6.21.0'
